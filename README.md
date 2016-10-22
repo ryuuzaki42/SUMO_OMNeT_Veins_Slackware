@@ -39,3 +39,5 @@ Set the load [configs](https://github.com/ryuuzaki42/SUMO_OMNeT_Veins_Slackware/
 Extract the [Veins 4.4](https://github.com/ryuuzaki42/SUMO_OMNeT_Veins_Slackware/blob/master/3_Veins/veins-veins-4.4.zip) and import in the OMNeT as show in the [tutorial](https://github.com/ryuuzaki42/SUMO_OMNeT_Veins_Slackware/blob/master/3_Veins/veins_tutorial.pdf).
 
 For more information go to [Veins page](http://veins.car2x.org/)
+
+# OBs: My bash scripts ([JB.sh](https://github.com/ryuuzaki42/SUMO_OMNeT_Veins_Slackware/tree/master/3_Veins/JB%20scripts)) can be helpful
