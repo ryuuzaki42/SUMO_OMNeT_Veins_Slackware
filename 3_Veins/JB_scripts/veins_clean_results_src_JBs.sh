@@ -22,7 +22,7 @@
 #
 # Script: limpa o histórico de resultados de execução do framework Veins
 #
-# Last update: 24/11/2016
+# Last update: 01/02/2017
 #
 cd $veinsFolder # veinsFolder (change in your ~/.bashrc)
 
@@ -33,24 +33,31 @@ echo -e "\tprojects/*/.tkenvrc"
 echo -e "\tprojects/*/run.r"
 echo -e "\tprojects/*/runExperimentOuptut.r"
 
-echo -e "\nList of files that will be deleted:\n"
-ls -r projects/*/results/
-ls projects/*/.tkenvrc
-ls projects/*/.tkenvlog
-ls projects/*/run.r
-ls projects/*/runExperimentOuptut.r
+echo -e "\nList of file(s) that will be deleted:\n"
 
-echo -en "\nWant continue? (y)es - (n)o: "
-read resposta
+fileDelete=`find projects/*/results/ 2> /dev/null | sort && echo`
+fileDelete=$fileDelete`find projects/*/.tkenvrc 2> /dev/null && echo`
+fileDelete=$fileDelete`find projects/*/.tkenvlog 2> /dev/null && echo`
+fileDelete=$fileDelete`find projects/*/run.r 2> /dev/null && echo`
+fileDelete=$fileDelete`find projects/*/runExperimentOuptut.r 2> /dev/null && echo`
 
-if [ "$resposta" = 'y' ]; then # Change "projects" for your project folder
-    rm -r projects/*/results/
-    rm projects/*/.tkenvrc
-    rm projects/*/.tkenvlog
-    rm projects/*/run.r
-    rm projects/*/runExperimentOuptut.r
-    echo -e "\nThe files was deleted"
+echo "$fileDelete"
+
+if [ "$fileDelete" == '' ]; then
+    echo "   ### No file to be deleted - already clean ###"
 else
-    echo -e "\nThe files was not deleted"
+    echo -en "\nWant continue? (y)es - (n)o: "
+    read continueOrNot
+
+    if [ "$continueOrNot" = 'y' ]; then # Change "projects" for your project folder
+        rm -r projects/*/results/ 2> /dev/null
+        rm projects/*/.tkenvrc 2> /dev/null
+        rm projects/*/.tkenvlog 2> /dev/null
+        rm projects/*/run.r 2> /dev/null
+        rm projects/*/runExperimentOuptut.r 2> /dev/null
+        echo -e "\nThe files was deleted"
+    else
+        echo -e "\nThe files was not deleted"
+    fi
 fi
 echo -e "\nEnd script\n"
